@@ -25,11 +25,9 @@ const registerSchema = Joi.object({
 		"string.empty": "Password cannot be empty.",
 		"any.required": "Password is required.",
 	}),
-	// country: Joi.string().required().messages({
-	// 	"string.base": "Country must be a string.",
-	// 	"string.empty": "Country cannot be empty.",
-	// 	"any.required": "Country is required.",
-	// }),
+	country: Joi.string().allow(null, "").messages({
+		"string.base": "Country must be a string.",
+	}),
 	createdBy: Joi.alternatives()
 		.try(
 			Joi.string().pattern(objectIdRegex).messages({
