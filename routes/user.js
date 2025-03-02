@@ -18,7 +18,6 @@ const { fetchAllUsers } = require("../controllers/user/fetch/all");
 // middleware
 const { authenticationMiddleware } = require("../middleware/auth/authentication");
 const { getMe } = require("../middleware/user/me");
-console.log("routes/user.js");
 const { fetchUsersAsTheyType } = require("../controllers/user/fetch/typing");
 
 // routes

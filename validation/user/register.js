@@ -16,7 +16,7 @@ const registerSchema = Joi.object({
 		"string.empty": "Email cannot be empty.",
 		"any.required": "Email is required.",
 	}),
-	role: Joi.string().valid("public-user", "admin", "business").messages({
+	role: Joi.string().valid("admin", "rider", "retailer", "marketing", "developer").messages({
 		"string.base": "Role must be a string.",
 		"any.only": 'Role must be either "user", or "business".',
 	}),
@@ -25,11 +25,11 @@ const registerSchema = Joi.object({
 		"string.empty": "Password cannot be empty.",
 		"any.required": "Password is required.",
 	}),
-	country: Joi.string().required().messages({
-		"string.base": "Country must be a string.",
-		"string.empty": "Country cannot be empty.",
-		"any.required": "Country is required.",
-	}),
+	// country: Joi.string().required().messages({
+	// 	"string.base": "Country must be a string.",
+	// 	"string.empty": "Country cannot be empty.",
+	// 	"any.required": "Country is required.",
+	// }),
 	createdBy: Joi.alternatives()
 		.try(
 			Joi.string().pattern(objectIdRegex).messages({

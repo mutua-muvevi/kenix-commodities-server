@@ -11,9 +11,41 @@ const MainSchemaOptions = {
 	optimisticConcurrency: true,
 };
 
-const UserSchema = new Schema({});
-
-
+const UserSchema = new Schema({
+	name: {
+		type: String,
+		required: true,
+		trim: true,
+	},
+	email: {
+		type: String,
+		required: true,
+		trim: true,
+		unique: true,
+		lowercase: true,
+		index: true,
+	},
+	password: {
+		type: String,
+		required: true,
+		select: false,
+	},
+	role: {
+		type: String,
+		required: true,
+		trim: true,
+	},
+	country: {
+		type: String,
+		required: true,
+		trim: true,
+		default: "kenya",
+	},
+	isApproved: {
+		type: Boolean,
+		default: false,
+	}
+}, MainSchemaOptions);
 
 //middleware to remove reset password token and expiry after reset password or expiry
 UserSchema.pre("save", function (next) {
