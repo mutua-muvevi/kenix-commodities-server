@@ -11,6 +11,7 @@ const SendEmail = require("../../../utils/send-mail");
 const logger = require("../../../utils/logger");
 const ErrorResponse = require("../../../utils/error-response");
 const User = require("../../../models/user");
+const { createUniqueID } = require("../../../utils/uuid");
 
 //-------------------------------------------------------------------------------------
 
@@ -109,6 +110,9 @@ const registerJWT = async (req, res, next) => {
 
 		user.emailOTP = OTP;
 		user.emailOTPExpiry = new Date(Date.now() + 2 * 60 * 60 * 1000); // 2 hours
+
+		const userUUID = createUniqueID()
+		user.UUID = userUUID
 
 		await user.save();
 
